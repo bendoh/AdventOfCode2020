@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 day=$1
 
 if [[ $day = "" ]]; then
@@ -17,6 +19,7 @@ sed -e "s/dayX/day${day}/g" -e "s/DayX/Day${day}/g" <test.go >day${day}_test.go
 rm dayX.go
 rm test.go
 
+cd ..
 
 
 

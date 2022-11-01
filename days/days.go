@@ -3,6 +3,8 @@ package days
 import (
 	"AdventOfCode2020/days/day0"
 	"AdventOfCode2020/days/day1"
+	"AdventOfCode2020/days/day10"
+	"AdventOfCode2020/days/day11"
 	"AdventOfCode2020/days/day2"
 	"AdventOfCode2020/days/day3"
 	"AdventOfCode2020/days/day4"
@@ -36,6 +38,8 @@ var dayFunctions = []Day{
 	{7, day7.Day7, nil, nil},
 	{8, day8.Day8, nil, nil},
 	{9, day9.Day9, nil, nil},
+	{10, day10.Day10, nil, nil},
+	{11, day11.Day11, nil, nil},
 }
 
 func Get(day int) Day {

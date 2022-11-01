@@ -1,46 +1,72 @@
 package main
 
 import (
-	"AdventOfCode2020/day0"
-	"AdventOfCode2020/day1"
-	"bufio"
+	"AdventOfCode2020/days"
+	"AdventOfCode2020/game"
+	"fmt"
 	"os"
 	"strconv"
 )
 
+func runDayCLI(day int, input []string) bool {
+	solver := days.Get(day).CLI
+	output := solver(input)
+
+	for _, line := range output {
+		fmt.Println(line)
+	}
+
+	return len(output) > 0
+}
+
+func cliMain(day int, inputFile string) bool {
+	result := true
+	fmt.Printf("Running day %d...", day)
+	lines := []string{}
+
+	if inputFile != "" {
+		lines = days.GetInput(inputFile)
+	} else {
+		lines = days.GetInputLines(day)
+	}
+
+	if day == -1 {
+		for dayIdx := 1; dayIdx < days.NumberDays(); dayIdx++ {
+			result = result && runDayCLI(day, lines)
+		}
+	} else {
+		result = result && runDayCLI(day, lines)
+	}
+
+	return result
+}
+
+func visualMain(givenDay int, inputFile string) bool {
+	game.Init(givenDay, inputFile)
+	return true
+}
+
 func main() {
-	day := 0
+	day := -1
+	inputFile := ""
+
 	if len(os.Args) > 1 {
 		day, _ = strconv.Atoi(os.Args[1])
 	}
-	inputFile := "/dev/stdin"
+
 	if len(os.Args) > 2 {
 		inputFile = os.Args[2]
 	}
 
-	input, err := os.Open(inputFile)
+	result := true
 
-	if err != nil {
-		panic(err)
+	if os.Getenv("AOC_VISUAL") == "ON" {
+		result = visualMain(day, inputFile)
+	} else {
+		result = cliMain(day, inputFile)
 	}
 
-	reader := bufio.NewReader(input)
-	var lines []string
-
-	for {
-		line, err := reader.ReadString('\n')
-		if err != nil {
-			break
-		}
-		if len(line) > 0 {
-			lines = append(lines, line[:len(line)-1])
-		} else {
-			break
-		}
+	if !result {
+		os.Exit(1)
 	}
-
-	days := []func([]string) bool{day0.Day0, day1.Day1}
-	days[day](lines)
-
-	os.Exit(0)
 }
