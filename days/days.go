@@ -6,6 +6,8 @@ import (
 	"AdventOfCode2020/days/day10"
 	"AdventOfCode2020/days/day11"
 	"AdventOfCode2020/days/day12"
+	"AdventOfCode2020/days/day13"
+	"AdventOfCode2020/days/day14"
 	"AdventOfCode2020/days/day2"
 	"AdventOfCode2020/days/day3"
 	"AdventOfCode2020/days/day4"
@@ -42,6 +44,8 @@ var dayFunctions = []Day{
 	{10, day10.Day10, nil, nil},
 	{11, day11.Day11, nil, nil},
 	{12, day12.Day12, nil, nil},
+	{13, day13.Day13, nil, nil},
+	{14, day14.Day14, nil, nil},
 }
 
 func Get(day int) Day {
@@ -65,7 +69,7 @@ func GetInput(inputFile string) []string {
 	for {
 		line, err := reader.ReadString('\n')
 
-		if line[len(line)-1] == '\n' {
+		if len(line) > 0 && line[len(line)-1] == '\n' {
 			lines = append(lines, line[:len(line)-1])
 		} else {
 			lines = append(lines, line)
@@ -74,6 +78,7 @@ func GetInput(inputFile string) []string {
 		if err == io.EOF {
 			break
 		}
+
 	}
 
 	return lines
