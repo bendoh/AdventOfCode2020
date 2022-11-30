@@ -12,7 +12,11 @@ import (
 	"AdventOfCode2020/days/day16"
 	"AdventOfCode2020/days/day17"
 	"AdventOfCode2020/days/day18"
+	"AdventOfCode2020/days/day19"
 	"AdventOfCode2020/days/day2"
+	"AdventOfCode2020/days/day20"
+	"AdventOfCode2020/days/day21"
+	"AdventOfCode2020/days/day22"
 	"AdventOfCode2020/days/day3"
 	"AdventOfCode2020/days/day4"
 	"AdventOfCode2020/days/day5"
@@ -54,6 +58,10 @@ var dayFunctions = []Day{
 	{16, day16.Day16, nil, nil},
 	{17, day17.Day17, nil, nil},
 	{18, day18.Day18, nil, nil},
+	{19, day19.Day19, nil, nil},
+	{20, day20.Day20, nil, nil},
+	{21, day21.Day21, nil, nil},
+	{22, day22.Day22, nil, nil},
 }
 
 func Get(day int) Day {
